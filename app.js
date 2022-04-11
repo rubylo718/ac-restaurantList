@@ -1,3 +1,4 @@
+import { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } from 'constants'
 import express from 'express'
 import exphbs from 'express-handlebars'
 
@@ -14,6 +15,13 @@ app.use(express.static('public'))
 
 app.get('/', (req, res) => {
   res.render('index', { restaurants: restaurantList.results})
+})
+
+app.get('/restaurants/:restaurant_id', (req, res)=> {
+  const restaurant = restaurantList.results.find(
+    restaurant => restaurant.id.toString() === req.params.restaurant_id
+  )
+  res.render('show', { restaurant: restaurant})
 })
 
 app.listen(port, () => {
