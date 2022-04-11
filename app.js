@@ -13,7 +13,7 @@ app.set('view engine', 'hbs')
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-  res.render('index', { restaurantList: restaurantList})
+  res.render('index', { restaurants: restaurantList.results})
 })
 
 app.listen(port, () => {
